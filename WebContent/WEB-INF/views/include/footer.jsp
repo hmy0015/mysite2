@@ -8,5 +8,5 @@
 </head>
 <body>
 	<!-- //footer -->
-	<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
+	<div id="footer">Copyright ⓒ 2020 황민영. All right reserved</div>
 </body>

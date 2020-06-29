@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import = "com.javaex.vo.UserVo" %>
-	
-<%
-	String result = request.getParameter("result");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -17,14 +14,14 @@
 	<div id="wrap">
 		
 		<!-- //header -->
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<!-- //nav -->
-		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
 
 		<!-- //aside -->
-		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
-		
+		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
+	
 		<div id="content">
 			
 			<div id="content-head">
@@ -44,9 +41,9 @@
 				<div id="loginForm">
 					<form action="/mysite2/user" method="">
 					
-						<% if("fail".equals(result)) { %>
-						<p> <br> 로그인에 실패했습니다. 다시 로그인해주세요. <br><br>  </p>
-						<% } %>
+						<c:if test="${param.result == 'fail'}">
+							<p> <br> 로그인에 실패했습니다. 다시 로그인해주세요. <br><br> </p>
+						</c:if>
 						
 						<input type="hidden" name = "action" value = "login">
 						<!-- 아이디 -->
@@ -76,7 +73,7 @@
 		<div class="clear"></div>
 	
 		<!-- //footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	</div>
 	<!-- //wrap -->

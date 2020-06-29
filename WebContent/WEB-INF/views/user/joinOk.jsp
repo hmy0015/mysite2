@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <!DOCTYPE html>
 <html>
@@ -14,24 +15,15 @@
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="/mysite2/main">MySite</a>
-			</h1>
-
-			<ul>
-				<li><a href="/mysite2/user?action=loginForm">로그인</a></li>
-				<li><a href="/mysite2/user?action=joinForm">회원가입</a></li>
-			</ul>
-		</div>
 		<!-- //header -->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<!-- //nav -->
-		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
 
 		<!-- //aside -->
-		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
-		
+		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
+
 		<div id="content">
 			
 			<div id="content-head">
@@ -65,7 +57,7 @@
 		<div class="clear"></div>
 
 		<!-- //footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	</div>
 	<!-- //wrap -->
