@@ -76,11 +76,13 @@ public class BoardDao {
 			query += " where b.user_no = u.no ";
 			
 			if(keyword == null) {
+				query += " order by b.no desc ";
 				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 			}
 			
 			else {
 				query += " and b.title = ? ";
+				query += " order by b.no desc ";
 
 				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 				

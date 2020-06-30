@@ -60,9 +60,11 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:set var="i" value="-1"/>
 							<c:forEach items="${requestScope.bList}" var="vo" varStatus="status">
+								<input type="hidden" value=${i = i + 1}>
 								<tr>
-									<td>${status.count}</td>
+									<td>${bList.size() - i}</td>
 									<td class="text-left"><a
 										href="/mysite2/board?action=read&no=${vo.no}">${vo.title}</a></td>
 									<td>${vo.name}</td>
@@ -73,6 +75,7 @@
 											<a href="/mysite2/board?action=delete&no=${vo.no}">[삭제]</a>
 										</c:if></td>
 								</tr>
+								
 							</c:forEach>
 						</tbody>
 					</table>

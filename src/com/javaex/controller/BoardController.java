@@ -22,7 +22,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 
-		// 게시판
+		// 게시판 리스트
 		if ("board".equals(action)) {
 			System.out.println("board");
 
