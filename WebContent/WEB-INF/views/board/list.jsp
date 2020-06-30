@@ -60,12 +60,16 @@
 							<c:forEach items="${bList}" var = "vo" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-									<td class="text-left"><a href="/mysite2/board?action=read">${vo.title}</a></td>
+									<td class="text-left"><a href="/mysite2/board?action=read&no=${vo.user_no}">${vo.title}</a></td>
 									<td>${vo.name}</td>
 									<td>${vo.hit}</td>
 									<td>${vo.reg_date}</td>
 									
-									<td><a href="/mysite2/board?action=delete&no=${vo.user_no}">[삭제]</a></td>
+									<td>
+										<c:if test="${authUser.no == vo.user_no}">
+											<a href="/mysite2/board?action=delete&no=${vo.user_no}">[삭제]</a>
+										</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -90,8 +94,9 @@
 						
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="/mysite2/board?action=writeForm">글쓰기</a>
-				
+					<c:if test="${authUser != null}">
+						<a id="btn_write" href="/mysite2/board?action=writeForm">글쓰기</a>
+					</c:if>
 				</div>
 				<!-- //list -->
 			</div>

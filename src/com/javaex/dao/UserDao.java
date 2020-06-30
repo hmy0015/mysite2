@@ -158,49 +158,6 @@ public class UserDao {
 		return vo;
 	}
 	
-	// 로그인 한 사용자 정보 가져오기02
-	public UserVo getUser(int no) {
-		UserVo vo = null;
-		
-		getConnection();
-		
-		try {			
-			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
-			String query = "";
-			query += " select id, password, no, name, gender ";
-			query += " from users ";
-			query += " where no = ? ";
-			
-			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
-
-			pstmt.setInt(1, no); // ?(물음표) 중 1번째, 순서중요
-			
-			rs = pstmt.executeQuery(); // 쿼리문 실행
-			
-			// 4. 결과 처리
-			while (rs.next()) {
-				String id = rs.getString("id");
-				String password = rs.getString("password");
-				int uNo = rs.getInt("no");
-				String name = rs.getString("name");
-				String gender = rs.getString("gender");
-				
-				vo = new UserVo();
-				vo.setId(id);
-				vo.setPassword(password);
-				vo.setNo(uNo);
-				vo.setName(name);
-				vo.setGender(gender);
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		}
-		
-		close();
-		return vo;
-	}
-	
 	// 수정
 	public int modify(UserVo vo) {
 		int count = 0;

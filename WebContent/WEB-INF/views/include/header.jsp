@@ -15,18 +15,15 @@
 			<a href="/mysite2/main">MySite</a>
 		</h1>
 
-		<!-- 로그인 실패 시 -->
-
 		<c:choose>
-			<c:when test="${empty authUser}">
+			<c:when test="${empty authUser}"> <!-- 로그인 실패 시 -->
 				<ul>
 					<li><a href="/mysite2/user?action=loginForm">로그인</a></li>
 					<li><a href="/mysite2/user?action=joinForm">회원가입</a></li>
 				</ul>
 			</c:when>
 
-			<c:otherwise>
-				<!-- 로그인 성공 시 -->
+			<c:otherwise> <!-- 로그인 성공 시 -->
 				<ul>
 					<li>${authUser.name}님안녕하세요^^</li>
 					<li><a href="/mysite2/user?action=logout">로그아웃</a></li>

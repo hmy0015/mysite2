@@ -20,7 +20,6 @@ public class DaoTest {
 			System.out.println("No : " + uvo.getNo() + ", id : " + uvo.getId() + ", password : " + uvo.getPassword()
 								+ ", name : " + uvo.getName() + ", gender : " + uvo.getGender());
 		}
-		*/
 
 		BoardDao dao = new BoardDao();
 		
@@ -35,5 +34,13 @@ public class DaoTest {
 								+ ", hit : " + vo.getHit() + ", reg_date : " + vo.getReg_date() + ", user_no : " + vo.getUser_no());
 		}
 		
+		*/
+		
+		BoardDao boardDao = new BoardDao();
+
+		BoardVo vo = boardDao.getPost(2);
+		
+		System.out.println(vo.getNo());
+
 	}
 }

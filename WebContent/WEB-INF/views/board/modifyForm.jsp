@@ -42,7 +42,8 @@
 
 			<div id="board">
 				<div id="modifyForm">
-					<form action="#" method="get">
+					<form action="/mysite2/board" method="get">
+						<input type="hidden" name = "action" value = "modify">
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">작성자</span> <span class="form-value">정우성</span>

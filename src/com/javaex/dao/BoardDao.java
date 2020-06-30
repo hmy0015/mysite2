@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.javaex.vo.BoardVo;
 import com.javaex.vo.GuestVo;
+import com.javaex.vo.UserVo;
 
 public class BoardDao {
 	// import java.sql.*;
@@ -67,7 +68,6 @@ public class BoardDao {
 			String query = "";
 			query += " select  b.no, ";
 			query += "         b.title, ";
-			query += "         b.content, ";
 			query += "         u.name, ";
 			query += "         b.hit, ";
 			query += "         b.reg_date, ";
@@ -83,13 +83,12 @@ public class BoardDao {
 			while (rs.next()) {
 				int no = rs.getInt("no");
 				String title = rs.getString("title");
-				String content = rs.getString("content");
 				String name = rs.getString("name");
 				int hit = rs.getInt("hit");
 				String reg_date = rs.getString("reg_date");
 				int user_no = rs.getInt("user_no");
 
-				BoardVo vo = new BoardVo(no, title, content, name, hit, reg_date, user_no);
+				BoardVo vo = new BoardVo(no, title, "", name, hit, reg_date, user_no);
 				bList.add(vo);
 			}
 		} catch (SQLException e) {
@@ -126,4 +125,56 @@ public class BoardDao {
 
 	// 수정
 	
+	// 게시글 불러오기
+	public BoardVo getPost(int uNo) {
+		// 리스트 준비
+		BoardVo vo = null;
+		getConnection();
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+			String query = "";
+			query += " select  b.no, ";
+			query += "         b.title, ";
+			query += "         b.content, ";
+			query += "         u.name, ";
+			query += "         b.hit, ";
+			query += "         b.reg_date, ";
+			query += "         b.user_no";
+			query += " from board b, users u ";
+			query += " where b.user_no = u.no ";
+			query += " and b.user_no = ? ";
+
+			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+
+			pstmt.setInt(1, uNo); // ?(물음표) 중 1번째, 순서중요
+			
+			rs = pstmt.executeQuery();
+		
+			// 4.결과처리
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String name = rs.getString("name");
+				int hit = rs.getInt("hit");
+				String reg_date = rs.getString("reg_date");
+				int user_no = rs.getInt("user_no");
+
+				vo = new BoardVo();
+				vo.setNo(no);
+				vo.setTitle(title);
+				vo.setContent(content);
+				vo.setName(name);
+				vo.setHit(hit);
+				vo.setReg_date(reg_date);
+				vo.setUser_no(user_no);
+			}
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
+		return vo;
+	}
 }

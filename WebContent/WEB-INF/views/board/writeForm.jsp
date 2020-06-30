@@ -41,7 +41,8 @@
 
 			<div id="board">
 				<div id="writeForm">
-					<form action="#" method="get">
+					<form action="/mysite2/board" method="get">
+						<input type="hidden" name = "action" value = "write">
 						<!-- 力格 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">力格</label> <input
