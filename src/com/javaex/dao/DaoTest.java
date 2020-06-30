@@ -59,7 +59,7 @@ public class DaoTest {
 		System.out.println("============================================================================================");
 		
 		// 검색
-		list = boardDao.getBoardList("제목02");
+		list = boardDao.getBoardList("제목01");
 
 		for (BoardVo vo : list) {
 			System.out.println("No : " + vo.getNo() + ", title : " + vo.getTitle() + ", name : " + vo.getName()

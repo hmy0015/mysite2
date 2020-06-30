@@ -22,19 +22,8 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 
-		// 게시판 리스트
-		if ("board".equals(action)) {
-			System.out.println("board");
-
-			BoardDao boardDao = new BoardDao();
-			List<BoardVo> boardList = boardDao.getBoardList(null);
-			request.setAttribute("bList", boardList);
-
-			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
-		}
-
 		// 삭제
-		else if ("delete".equals(action)) {
+		if ("delete".equals(action)) {
 			System.out.println("delete");
 
 			BoardDao boardDao = new BoardDao();
@@ -92,7 +81,7 @@ public class BoardController extends HttpServlet {
 		// 등록폼
 		else if ("writeForm".equals(action)) {
 			System.out.println("writeForm");
-			
+
 			WebUtil.forword(request, response, "/WEB-INF/views/board/writeForm.jsp");
 		}
 
@@ -106,23 +95,19 @@ public class BoardController extends HttpServlet {
 
 			BoardDao boardDao = new BoardDao();
 			boardDao.insert(title, content, uNo);
-			
+
 			WebUtil.redirect(request, response, "/mysite2/board?action=board");
 		}
-		
-		// 검색
-		else if ("search".equals(action)) {
-			System.out.println("search");
 
-			String keyword = request.getParameter("search");
-			System.out.println(keyword);
-			
+		// 게시판 리스트
+		else {
+			System.out.println("board");
+
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> sPost = boardDao.getBoardList(keyword);
-			
-			request.setAttribute("sPost", sPost);
-			
-			WebUtil.redirect(request, response, "/mysite2/board?action=board&search=success");
+			List<BoardVo> boardList = boardDao.getBoardList(null);
+			request.setAttribute("bList", boardList);
+
+			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
 		}
 	}
 
