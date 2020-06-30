@@ -58,6 +58,7 @@ public class BoardController extends HttpServlet {
 
 			BoardDao boardDao = new BoardDao();
 			BoardVo vo = boardDao.getPost(no);
+			boardDao.cnt(no);
 
 			request.setAttribute("vo", vo);
 
@@ -112,8 +113,8 @@ public class BoardController extends HttpServlet {
 			
 			WebUtil.redirect(request, response, "/mysite2/board?action=board");
 		}
-
-		// 조회수 카운트
+		
+		// 검색
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -62,7 +62,7 @@ public class BoardDao {
 		// 리스트 준비
 		List<BoardVo> bList = new ArrayList<BoardVo>();
 		getConnection();
-		
+
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
 			String query = "";
@@ -78,7 +78,7 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
 			rs = pstmt.executeQuery();
-		
+
 			// 4.결과처리
 			while (rs.next()) {
 				int no = rs.getInt("no");
@@ -124,7 +124,7 @@ public class BoardDao {
 	// 등록
 	public void insert(String title, String content, int uNo) {
 		getConnection();
-		
+
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
 			String query = "";
@@ -143,12 +143,11 @@ public class BoardDao {
 		}
 		close();
 	}
-	
 
 	// 수정
 	public void modify(int no, String title, String content) {
 		getConnection();
-		
+
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
@@ -171,19 +170,42 @@ public class BoardDao {
 
 		close();
 	}
-	
+
 	// 검색
-	
+
 	// 조회수 카운트
-	
+	public void cnt(int pNo) {
+		getConnection();
+
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = ""; // 쿼리문 문자열만들기, ? 주의
+			query += " update board ";
+			query += " set hit = hit + 1 ";
+			query += " where no = ? ";
+
+			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+
+			pstmt.setInt(1, pNo); // ?(물음표) 중 1번째, 순서중요
+
+			pstmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
+	}
+
 	// 게시글 불러오기
 	public BoardVo getPost(int pNo) {
 		// 리스트 준비
 		BoardVo vo = null;
 		getConnection();
-		
+
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+			
 			String query = "";
 			query += " select  b.no, ";
 			query += "         b.title, ";
@@ -199,9 +221,9 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
 			pstmt.setInt(1, pNo); // ?(물음표) 중 1번째, 순서중요
-			
+
 			rs = pstmt.executeQuery();
-		
+
 			// 4.결과처리
 			while (rs.next()) {
 				int no = rs.getInt("no");
