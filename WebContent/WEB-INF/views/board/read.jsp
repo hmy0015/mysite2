@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-			
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +26,12 @@
 		<div id="content">
 
 			<div id="content-head">
-				<h3>°Ô½ÃÆÇ</h3>
+				<h3>ê²Œì‹œíŒ</h3>
 				<div id="location">
 					<ul>
-						<li>È¨</li>
-						<li>°Ô½ÃÆÇ</li>
-						<li class="last">ÀÏ¹İ°Ô½ÃÆÇ</li>
+						<li>í™ˆ</li>
+						<li>ê²Œì‹œíŒ</li>
+						<li class="last">ì¼ë°˜ê²Œì‹œíŒ</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -41,38 +41,38 @@
 			<div id="board">
 				<div id="read">
 					<form action="#" method="get">
-						<!-- ÀÛ¼ºÀÚ -->
+						<!-- ì‘ì„±ì -->
 						<div class="form-group">
-							<span class="form-text">ÀÛ¼ºÀÚ</span> <span class="form-value">${vo.name}</span>
+							<span class="form-text">ì‘ì„±ì</span>
+							<span class="form-value">${vo.name}</span>
 						</div>
 
-						<!-- Á¶È¸¼ö -->
+						<!-- ì¡°íšŒìˆ˜ -->
 						<div class="form-group">
-							<span class="form-text">Á¶È¸¼ö</span> <span class="form-value">${vo.hit}</span>
+							<span class="form-text">ì¡°íšŒìˆ˜</span> <span class="form-value">${vo.hit}</span>
 						</div>
 
-						<!-- ÀÛ¼ºÀÏ -->
+						<!-- ì‘ì„±ì¼ -->
 						<div class="form-group">
-							<span class="form-text">ÀÛ¼ºÀÏ</span> <span class="form-value">${vo.reg_date}</span>
+							<span class="form-text">ì‘ì„±ì¼</span> <span class="form-value">${vo.reg_date}</span>
 						</div>
 
-						<!-- Á¦¸ñ -->
+						<!-- ì œëª© -->
 						<div class="form-group">
-							<span class="form-text">Á¦  ¸ñ</span> <span class="form-value">
+							<span class="form-text">ì œ  ëª©</span> <span class="form-value">
 								${vo.title}</span>
 						</div>
 
-						<!-- ³»¿ë -->
+						<!-- ë‚´ìš© -->
 						<div id="txt-content">
-							<span class="form-value"> 
-								${vo.content}<br>
+							<span class="form-value"> ${vo.content}<br>
 							</span>
 						</div>
 
 						<c:if test="${authUser.no == vo.user_no}">
-							<a id="btn_modify" href="/mysite2/board?action=modifyForm">¼öÁ¤</a>
+							<a id="btn_modify" href="/mysite2/board?action=modifyForm&no=${vo.no}">ìˆ˜ì •</a>
 						</c:if>
-						<a id="btn_modify" href="/mysite2/board?action=board">¸ñ·Ï</a>
+						<a id="btn_modify" href="/mysite2/board?action=board">ëª©ë¡</a>
 
 					</form>
 					<!-- //form -->

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -28,12 +28,12 @@
 		<div id="content">
 
 			<div id="content-head">
-				<h3>°Ô½ÃÆÇ</h3>
+				<h3>ê²Œì‹œíŒ</h3>
 				<div id="location">
 					<ul>
-						<li>È¨</li>
-						<li>°Ô½ÃÆÇ</li>
-						<li class="last">ÀÏ¹Ý°Ô½ÃÆÇ</li>
+						<li>í™ˆ</li>
+						<li>ê²Œì‹œíŒ</li>
+						<li class="last">ì¼ë°˜ê²Œì‹œíŒ</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -44,45 +44,37 @@
 				<div id="modifyForm">
 					<form action="/mysite2/board" method="get">
 						<input type="hidden" name = "action" value = "modify">
-						<!-- ÀÛ¼ºÀÚ -->
+						<input type="hidden" name = "no" value = ${vo.no}>
+						<!-- ìž‘ì„±ìž -->
 						<div class="form-group">
-							<span class="form-text">ÀÛ¼ºÀÚ</span> <span class="form-value">Á¤¿ì¼º</span>
+							<span class="form-text">ìž‘ì„±ìž</span> <span class="form-value">${vo.name}</span>
 						</div>
 
-						<!-- Á¶È¸¼ö -->
+						<!-- ì¡°íšŒìˆ˜ -->
 						<div class="form-group">
-							<span class="form-text">Á¶È¸¼ö</span> <span class="form-value">123</span>
+							<span class="form-text">ì¡°íšŒìˆ˜</span> <span class="form-value">${vo.hit}</span>
 						</div>
 
-						<!-- ÀÛ¼ºÀÏ -->
+						<!-- ìž‘ì„±ì¼ -->
 						<div class="form-group">
-							<span class="form-text">ÀÛ¼ºÀÏ</span> <span class="form-value">2020-03-02</span>
+							<span class="form-text">ìž‘ì„±ì¼</span> <span class="form-value">${vo.reg_date}</span>
 						</div>
 
-						<!-- Á¦¸ñ -->
+						<!-- ì œëª© -->
 						<div class="form-group">
-							<label class="form-text" for="txt-title">Á¦¸ñ</label> <input
-								type="text" id="txt-title" name="" value="¿©±â¿¡´Â ±ÛÁ¦¸ñÀÌ Ãâ·ÂµË´Ï´Ù.">
+							<label class="form-text" for="txt-title">ì œëª©</label>
+							<input type="text" id="txt-title" name ="title" value= "${vo.title}"">
 						</div>
 
 
 
-						<!-- ³»¿ë -->
+						<!-- ë‚´ìš© -->
 						<div class="form-group">
-							<textarea id="txt-content">
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							¿©±â¿¡´Â º»¹®³»¿ëÀÌ Ãâ·ÂµË´Ï´Ù.
-							</textarea>
+							<textarea id="txt-content" name ="content" value = ${vo.content}>${vo.content}</textarea>
 						</div>
 
-						<a id="btn_cancel" href="/mysite2/board?action=board">Ãë¼Ò</a>
-						<button id="btn_modify" type="submit">¼öÁ¤</button>
+						<a id="btn_cancel" href="/mysite2/board?action=board">ì·¨ì†Œ</a>
+						<button id="btn_modify" type="submit">ìˆ˜ì •</button>
 
 					</form>
 					<!-- //form -->

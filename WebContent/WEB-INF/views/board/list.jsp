@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -25,12 +25,12 @@
 		<div id="content">
 
 			<div id="content-head">
-				<h3>°Ô½ÃÆÇ</h3>
+				<h3>ê²Œì‹œíŒ</h3>
 				<div id="location">
 					<ul>
-						<li>È¨</li>
-						<li>°Ô½ÃÆÇ</li>
-						<li class="last">ÀÏ¹Ý°Ô½ÃÆÇ</li>
+						<li>í™ˆ</li>
+						<li>ê²Œì‹œíŒ</li>
+						<li class="last">ì¼ë°˜ê²Œì‹œíŒ</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -42,32 +42,32 @@
 					<form action="" method="">
 						<div class="form-group text-right">
 							<input type="text">
-							<button type="submit" id=btn_search>°Ë»ö</button>
+							<button type="submit" id=btn_search>ê²€ìƒ‰</button>
 						</div>
 					</form>
 					<table >
 						<thead>
 							<tr>
-								<th>¹øÈ£</th>
-								<th>Á¦¸ñ</th>
-								<th>±Û¾´ÀÌ</th>
-								<th>Á¶È¸¼ö</th>
-								<th>ÀÛ¼ºÀÏ</th>
-								<th>°ü¸®</th>
+								<th>ë²ˆí˜¸</th>
+								<th>ì œëª©</th>
+								<th>ê¸€ì“´ì´</th>
+								<th>ì¡°íšŒìˆ˜</th>
+								<th>ìž‘ì„±ì¼</th>
+								<th>ê´€ë¦¬</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${bList}" var = "vo" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-									<td class="text-left"><a href="/mysite2/board?action=read&no=${vo.user_no}">${vo.title}</a></td>
+									<td class="text-left"><a href="/mysite2/board?action=read&no=${vo.no}">${vo.title}</a></td>
 									<td>${vo.name}</td>
 									<td>${vo.hit}</td>
 									<td>${vo.reg_date}</td>
 									
 									<td>
 										<c:if test="${authUser.no == vo.user_no}">
-											<a href="/mysite2/board?action=delete&no=${vo.user_no}">[»èÁ¦]</a>
+											<a href="/mysite2/board?action=delete&no=${vo.no}">[ì‚­ì œ]</a>
 										</c:if>
 									</td>
 								</tr>
@@ -77,7 +77,7 @@
 		
 					<div id="paging">
 						<ul>
-							<li><a href="">¢¸</a></li>
+							<li><a href="">â—€</a></li>
 							<li><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
@@ -88,14 +88,14 @@
 							<li><a href="">8</a></li>
 							<li><a href="">9</a></li>
 							<li><a href="">10</a></li>
-							<li><a href="">¢º</a></li>
+							<li><a href="">â–¶</a></li>
 						</ul>
 						
 						
 						<div class="clear"></div>
 					</div>
 					<c:if test="${authUser != null}">
-						<a id="btn_write" href="/mysite2/board?action=writeForm">±Û¾²±â</a>
+						<a id="btn_write" href="/mysite2/board?action=writeForm&no=${authUser.no}">ê¸€ì“°ê¸°</a>
 					</c:if>
 				</div>
 				<!-- //list -->

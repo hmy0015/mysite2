@@ -53,14 +53,12 @@ public class BoardController extends HttpServlet {
 		// 게시글 보기
 		else if ("read".equals(action)) {
 			System.out.println("read");
-			
+
 			int no = Integer.parseInt(request.getParameter("no"));
 
-			System.out.println(no);
-			
 			BoardDao boardDao = new BoardDao();
 			BoardVo vo = boardDao.getPost(no);
-			
+
 			request.setAttribute("vo", vo);
 
 			WebUtil.forword(request, response, "/WEB-INF/views/board/read.jsp");
@@ -70,10 +68,13 @@ public class BoardController extends HttpServlet {
 		else if ("modifyForm".equals(action)) {
 			System.out.println("modifyForm");
 
+			int no = Integer.parseInt(request.getParameter("no"));
+
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> boardList = boardDao.getBoardList();
-			request.setAttribute("bList", boardList);
-			
+			BoardVo vo = boardDao.getPost(no);
+
+			request.setAttribute("vo", vo);
+
 			WebUtil.forword(request, response, "/WEB-INF/views/board/modifyForm.jsp");
 		}
 
@@ -81,22 +82,38 @@ public class BoardController extends HttpServlet {
 		else if ("modify".equals(action)) {
 			System.out.println("modify");
 
+			int no = Integer.parseInt(request.getParameter("no"));
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+
+			BoardDao boardDao = new BoardDao();
+			boardDao.modify(no, title, content);
+
 			WebUtil.redirect(request, response, "/mysite2/board?action=board");
 		}
 
 		// 등록폼
 		else if ("writeForm".equals(action)) {
 			System.out.println("writeForm");
-
+			
 			WebUtil.forword(request, response, "/WEB-INF/views/board/writeForm.jsp");
 		}
-		
+
 		// 등록
 		else if ("write".equals(action)) {
 			System.out.println("write");
 
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			int uNo = Integer.parseInt(request.getParameter("uNo"));
+
+			BoardDao boardDao = new BoardDao();
+			boardDao.insert(title, content, uNo);
+			
 			WebUtil.redirect(request, response, "/mysite2/board?action=board");
 		}
+
+		// 조회수 카운트
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

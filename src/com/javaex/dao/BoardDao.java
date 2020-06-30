@@ -107,7 +107,7 @@ public class BoardDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
 			query += " delete from board ";
-			query += " where user_no = ? ";
+			query += " where no = ? ";
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
@@ -122,11 +122,62 @@ public class BoardDao {
 	}
 
 	// 등록
+	public void insert(String title, String content, int uNo) {
+		getConnection();
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+			String query = "";
+			query += " INSERT INTO board VALUES(seq_board_no.nextval, ?, ?, 0, sysdate, ?) ";
+
+			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+
+			pstmt.setString(1, title); // ?(물음표) 중 1번째, 순서중요
+			pstmt.setString(2, content); // ?(물음표) 중 2번째, 순서중요
+			pstmt.setInt(3, uNo); // ?(물음표) 중 3번째, 순서중요
+
+			pstmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		close();
+	}
+	
 
 	// 수정
+	public void modify(int no, String title, String content) {
+		getConnection();
+		
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = ""; // 쿼리문 문자열만들기, ? 주의
+			query += " update board ";
+			query += " set title = ? , ";
+			query += "     content = ? ";
+			query += " where no = ? ";
+
+			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+
+			pstmt.setString(1, title); // ?(물음표) 중 1번째, 순서중요
+			pstmt.setString(2, content); // ?(물음표) 중 2번째, 순서중요
+			pstmt.setInt(3, no); // ?(물음표) 중 3번째, 순서중요
+
+			pstmt.executeUpdate(); // 쿼리문 실행
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
+	}
+	
+	// 검색
+	
+	// 조회수 카운트
 	
 	// 게시글 불러오기
-	public BoardVo getPost(int uNo) {
+	public BoardVo getPost(int pNo) {
 		// 리스트 준비
 		BoardVo vo = null;
 		getConnection();
@@ -143,11 +194,11 @@ public class BoardDao {
 			query += "         b.user_no";
 			query += " from board b, users u ";
 			query += " where b.user_no = u.no ";
-			query += " and b.user_no = ? ";
+			query += " and b.no = ? ";
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
-			pstmt.setInt(1, uNo); // ?(물음표) 중 1번째, 순서중요
+			pstmt.setInt(1, pNo); // ?(물음표) 중 1번째, 순서중요
 			
 			rs = pstmt.executeQuery();
 		

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -27,12 +27,12 @@
 		<div id="content">
 
 			<div id="content-head">
-				<h3>°Ô½ÃÆÇ</h3>
+				<h3>ê²Œì‹œíŒ</h3>
 				<div id="location">
 					<ul>
-						<li>È¨</li>
-						<li>°Ô½ÃÆÇ</li>
-						<li class="last">ÀÏ¹Ý°Ô½ÃÆÇ</li>
+						<li>í™ˆ</li>
+						<li>ê²Œì‹œíŒ</li>
+						<li class="last">ì¼ë°˜ê²Œì‹œíŒ</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -43,20 +43,21 @@
 				<div id="writeForm">
 					<form action="/mysite2/board" method="get">
 						<input type="hidden" name = "action" value = "write">
-						<!-- Á¦¸ñ -->
+						<input type="hidden" name = "uNo" value = "${authUser.no}">
+						
+						<!-- ì œëª© -->
 						<div class="form-group">
-							<label class="form-text" for="txt-title">Á¦¸ñ</label> <input
-								type="text" id="txt-title" name="" value=""
-								placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä">
+							<label class="form-text" for="txt-title">ì œëª©</label> 
+							<input type="text" id="txt-title" name="title" value="" placeholder="ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”">
 						</div>
 
-						<!-- ³»¿ë -->
+						<!-- ë‚´ìš© -->
 						<div class="form-group">
-							<textarea id="txt-content"></textarea>
+							<textarea id="txt-content" name="content" value="" ></textarea>
 						</div>
 
-						<a id="btn_cancel" href="/mysite2/board?action=board">Ãë¼Ò</a>
-						<button id="btn_add" type="submit">µî·Ï</button>
+						<a id="btn_cancel" href="/mysite2/board?action=board">ì·¨ì†Œ</a>
+						<button id="btn_add" type="submit">ë“±ë¡</button>
 
 					</form>
 					<!-- //form -->
