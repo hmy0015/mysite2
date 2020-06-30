@@ -57,8 +57,8 @@ public class BoardDao {
 		}
 	}
 
-	// 리스트
-	public List<BoardVo> getBoardList() {
+	// 리스트 출력 및 검색
+	public List<BoardVo> getBoardList(String keyword) {
 		// 리스트 준비
 		List<BoardVo> bList = new ArrayList<BoardVo>();
 		getConnection();
@@ -74,9 +74,19 @@ public class BoardDao {
 			query += "         b.user_no";
 			query += " from board b, users u ";
 			query += " where b.user_no = u.no ";
+			
+			if(keyword == null) {
+				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+			}
+			
+			else {
+				query += " and b.title = ? ";
 
-			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
-
+				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+				
+				pstmt.setString(1, keyword);// ?(물음표) 중 1번째, 순서중요
+			}
+			
 			rs = pstmt.executeQuery();
 
 			// 4.결과처리
@@ -87,8 +97,9 @@ public class BoardDao {
 				int hit = rs.getInt("hit");
 				String reg_date = rs.getString("reg_date");
 				int user_no = rs.getInt("user_no");
-
+				
 				BoardVo vo = new BoardVo(no, title, "", name, hit, reg_date, user_no);
+
 				bList.add(vo);
 			}
 		} catch (SQLException e) {
@@ -172,6 +183,9 @@ public class BoardDao {
 	}
 
 	// 검색
+	public void search(String keyword) {
+		
+	}
 
 	// 조회수 카운트
 	public void cnt(int pNo) {
@@ -204,8 +218,7 @@ public class BoardDao {
 		getConnection();
 
 		try {
-			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
-			
+			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것\
 			String query = "";
 			query += " select  b.no, ";
 			query += "         b.title, ";

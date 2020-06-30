@@ -1,7 +1,6 @@
 package com.javaex.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,13 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.javaex.dao.BoardDao;
-import com.javaex.dao.UserDao;
 import com.javaex.util.WebUtil;
 import com.javaex.vo.BoardVo;
-import com.javaex.vo.UserVo;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
@@ -31,7 +27,7 @@ public class BoardController extends HttpServlet {
 			System.out.println("board");
 
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> boardList = boardDao.getBoardList();
+			List<BoardVo> boardList = boardDao.getBoardList(null);
 			request.setAttribute("bList", boardList);
 
 			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
@@ -57,8 +53,8 @@ public class BoardController extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			BoardDao boardDao = new BoardDao();
-			BoardVo vo = boardDao.getPost(no);
 			boardDao.cnt(no);
+			BoardVo vo = boardDao.getPost(no);
 
 			request.setAttribute("vo", vo);
 
@@ -115,6 +111,19 @@ public class BoardController extends HttpServlet {
 		}
 		
 		// 검색
+		else if ("search".equals(action)) {
+			System.out.println("search");
+
+			String keyword = request.getParameter("search");
+			System.out.println(keyword);
+			
+			BoardDao boardDao = new BoardDao();
+			List<BoardVo> sPost = boardDao.getBoardList(keyword);
+			
+			request.setAttribute("sPost", sPost);
+			
+			WebUtil.redirect(request, response, "/mysite2/board?action=board&search=success");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

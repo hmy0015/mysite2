@@ -7,8 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite2/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="/mysite2/assets/css/mysite.css" rel="stylesheet"
+	type="text/css">
+<link href="/mysite2/assets/css/board.css" rel="stylesheet"
+	type="text/css">
 
 </head>
 
@@ -39,13 +41,14 @@
 
 			<div id="board">
 				<div id="list">
-					<form action="" method="">
+					<form action="/mysite2/board" method="get">
 						<div class="form-group text-right">
-							<input type="text">
+							<input type="hidden" name="action" value="search"> <input
+								type="text" name="search" value="">
 							<button type="submit" id=btn_search>검색</button>
 						</div>
 					</form>
-					<table >
+					<table>
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -57,24 +60,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${bList}" var = "vo" varStatus="status">
+							<c:forEach items="${requestScope.bList}" var="vo" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-									<td class="text-left"><a href="/mysite2/board?action=read&no=${vo.no}">${vo.title}</a></td>
+									<td class="text-left"><a
+										href="/mysite2/board?action=read&no=${vo.no}">${vo.title}</a></td>
 									<td>${vo.name}</td>
 									<td>${vo.hit}</td>
 									<td>${vo.reg_date}</td>
-									
-									<td>
-										<c:if test="${authUser.no == vo.user_no}">
+
+									<td><c:if test="${authUser.no == vo.user_no}">
 											<a href="/mysite2/board?action=delete&no=${vo.no}">[삭제]</a>
-										</c:if>
-									</td>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-		
+
 					<div id="paging">
 						<ul>
 							<li><a href="">◀</a></li>
@@ -90,12 +92,13 @@
 							<li><a href="">10</a></li>
 							<li><a href="">▶</a></li>
 						</ul>
-						
-						
+
+
 						<div class="clear"></div>
 					</div>
 					<c:if test="${authUser != null}">
-						<a id="btn_write" href="/mysite2/board?action=writeForm&no=${authUser.no}">글쓰기</a>
+						<a id="btn_write"
+							href="/mysite2/board?action=writeForm&no=${authUser.no}">글쓰기</a>
 					</c:if>
 				</div>
 				<!-- //list -->
@@ -107,7 +110,7 @@
 
 		<!-- //footer -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-		
+
 	</div>
 	<!-- //wrap -->
 

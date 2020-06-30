@@ -9,6 +9,7 @@ public class DaoTest {
 	public static void main(String[] args) {
 		UserDao dao = new UserDao();
 		BoardDao boardDao = new BoardDao();
+		List<BoardVo> list = new ArrayList<BoardVo>();
 
 		/*
 		 * //UserVo vo = new UserVo("hi06", "1234", "황민영", "female"); //dao.insert(vo);
@@ -41,14 +42,24 @@ public class DaoTest {
 		// 게시글 업데이트
 		boardDao.modify(1, "수정 - 제목 01", "수정 - 내용 01");
 
-		 */
 
 		// 게시글 등록
 		boardDao.insert("등록 - 제목", "등록 - 내용", 1);
 		
+		 */
+		
 		// 게시글 리스트 가져오기
-		List<BoardVo> list = new ArrayList<BoardVo>();
-		list = boardDao.getBoardList();
+		list = boardDao.getBoardList(null);
+
+		for (BoardVo vo : list) {
+			System.out.println("No : " + vo.getNo() + ", title : " + vo.getTitle() + ", name : " + vo.getName()
+					+ ", hit : " + vo.getHit() + ", reg_date : " + vo.getReg_date() + ", user_no : " + vo.getUser_no());
+		}
+		
+		System.out.println("============================================================================================");
+		
+		// 검색
+		list = boardDao.getBoardList("제목02");
 
 		for (BoardVo vo : list) {
 			System.out.println("No : " + vo.getNo() + ", title : " + vo.getTitle() + ", name : " + vo.getName()
