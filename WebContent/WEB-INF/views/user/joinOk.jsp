@@ -18,9 +18,6 @@
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<!-- //nav -->
-		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
-
 		<!-- //aside -->
 		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
 

@@ -4,16 +4,18 @@ public class BoardVo {
 	private int no;
 	private String title;
 	private String content;
+	private String name;
 	private int hit;
 	private String reg_date;
 	private int user_no;
 	
 	public BoardVo() {}
 
-	public BoardVo(int no, String title, String content, int hit, String reg_date, int user_no) {
+	public BoardVo(int no, String title, String content, String name, int hit, String reg_date, int user_no) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
+		this.name = name;
 		this.hit = hit;
 		this.reg_date = reg_date;
 		this.user_no = user_no;
@@ -41,6 +43,14 @@ public class BoardVo {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getHit() {

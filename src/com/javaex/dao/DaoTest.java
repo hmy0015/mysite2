@@ -21,13 +21,17 @@ public class DaoTest {
 								+ ", name : " + uvo.getName() + ", gender : " + uvo.getGender());
 		}
 		*/
-		
+
 		BoardDao dao = new BoardDao();
+		
+		int no = 1;
+		dao.delPost(no);
+
 		List<BoardVo> list =  new ArrayList<BoardVo>();
 		list = dao.getBoardList();
-		
+	
 		for(BoardVo vo : list) {
-			System.out.println("No : " + vo.getNo() + ", title : " + vo.getTitle() + ", content : " + vo.getContent()
+			System.out.println("No : " + vo.getNo() + ", title : " + vo.getTitle() + ", content : " + vo.getContent() + ", name : " + vo.getName()
 								+ ", hit : " + vo.getHit() + ", reg_date : " + vo.getReg_date() + ", user_no : " + vo.getUser_no());
 		}
 		

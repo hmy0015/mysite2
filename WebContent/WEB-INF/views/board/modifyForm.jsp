@@ -21,9 +21,6 @@
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<!-- //nav -->
-		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
-
 		<!-- //aside -->
 		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
 
@@ -83,7 +80,7 @@
 							</textarea>
 						</div>
 
-						<a id="btn_cancel" href="">취소</a>
+						<a id="btn_cancel" href="/mysite2/board?action=board">취소</a>
 						<button id="btn_modify" type="submit">수정</button>
 
 					</form>

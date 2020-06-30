@@ -21,9 +21,6 @@
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<!-- //nav -->
-		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
-
 		<!-- //aside -->
 		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
 		<div id="content">
@@ -73,7 +70,8 @@
 							</span>
 						</div>
 
-						<a id="btn_modify" href="">수정</a> <a id="btn_modify" href="">목록</a>
+						<a id="btn_modify" href="/mysite2/board?action=modifyForm">수정</a>
+						<a id="btn_modify" href="/mysite2/board?action=board">목록</a>
 
 					</form>
 					<!-- //form -->

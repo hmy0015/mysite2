@@ -19,9 +19,6 @@
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<!-- //nav -->
-		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
-
 		<!-- //aside -->
 		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
 
@@ -60,46 +57,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr class="last">
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
+							<c:forEach items="${bList}" var = "vo" varStatus="status">
+								<tr>
+									<td>${status.count}</td>
+									<td class="text-left"><a href="/mysite2/board?action=read">${vo.title}</a></td>
+									<td>${vo.name}</td>
+									<td>${vo.hit}</td>
+									<td>${vo.reg_date}</td>
+									
+									<td><a href="/mysite2/board?action=delete&no=${vo.user_no}">[삭제]</a></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 		
@@ -122,7 +90,7 @@
 						
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="">글쓰기</a>
+					<a id="btn_write" href="/mysite2/board?action=writeForm">글쓰기</a>
 				
 				</div>
 				<!-- //list -->
@@ -141,4 +109,3 @@
 </body>
 
 </html>
-l>
