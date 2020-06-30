@@ -75,7 +75,6 @@
 											<a href="/mysite2/board?action=delete&no=${vo.no}">[삭제]</a>
 										</c:if></td>
 								</tr>
-								
 							</c:forEach>
 						</tbody>
 					</table>

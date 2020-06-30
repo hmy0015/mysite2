@@ -70,7 +70,7 @@ public class BoardDao {
 			query += "         b.title, ";
 			query += "         u.name, ";
 			query += "         b.hit, ";
-			query += "         b.reg_date, ";
+			query += "         to_char(b.reg_date,'yyyy-mm-dd hh24:mi') reg_date, ";
 			query += "         b.user_no";
 			query += " from board b, users u ";
 			query += " where b.user_no = u.no ";
@@ -227,7 +227,7 @@ public class BoardDao {
 			query += "         b.content, ";
 			query += "         u.name, ";
 			query += "         b.hit, ";
-			query += "         b.reg_date, ";
+			query += "         to_char(b.reg_date,'yyyy-mm-dd hh24:mi') reg_date, ";
 			query += "         b.user_no";
 			query += " from board b, users u ";
 			query += " where b.user_no = u.no ";
