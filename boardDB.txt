@@ -23,7 +23,13 @@ INCREMENT BY 1
 START WITH 1;
 
 -- 행 추가
-INSERT INTO board VALUES(seq_board_no.nextval, '제목입니다.', '내용입니다.', 5, sysdate, 1);
+INSERT INTO board VALUES(seq_board_no.nextval, '제목01', '내용01', 5, sysdate, 1);
+INSERT INTO board VALUES(seq_board_no.nextval, '제목02', '내용02', 10, sysdate, 2);
+INSERT INTO board VALUES(seq_board_no.nextval, '제목03', '내용03', 15, sysdate, 3);
+INSERT INTO board VALUES(seq_board_no.nextval, '제목04', '내용04', 20, sysdate, 1);
+
+--commit
+commit;
 
 -- 조회
 SELECT no,
@@ -32,18 +38,40 @@ SELECT no,
         hit,
         reg_date,
         user_no
-FROM board;
+FROM board
+order by no desc;
 
 -- 조인하여 조회
 SELECT b.no,
         b.title,
         b.content,
-        b.hit,
-        b.reg_date,
-        b.user_no,
-        u.id,
         u.name,
-        u.password,
-        u.gender
+        b.hit,
+        to_char(b.reg_date, 'yyyy-mm-dd hh:mi'),
+        b.user_no
 FROM board b, users u
 where b.user_no = u.no;
+
+delete from board
+where user_no = 2;
+
+update board
+set title = '수정 - 제목01',
+    content = '수정 - 내용01'
+where no = 1;    
+
+update board
+set hit = hit + 1
+where no = 1;
+
+SELECT b.no,
+        b.title,
+        b.content,
+        u.name,
+        b.hit,
+        to_char(b.reg_date, 'yyyy-mm-dd hh:mi'),
+        b.user_no
+FROM board b, users u
+where b.user_no = u.no
+and u.name = '이정재'
+or b.title = '제목01';

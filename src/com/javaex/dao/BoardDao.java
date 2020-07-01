@@ -184,11 +184,6 @@ public class BoardDao {
 		close();
 	}
 
-	// 검색
-	public void search(String keyword) {
-		
-	}
-
 	// 조회수 카운트
 	public void cnt(int pNo) {
 		getConnection();

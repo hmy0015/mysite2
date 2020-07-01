@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -104,9 +105,19 @@ public class BoardController extends HttpServlet {
 			System.out.println("board");
 
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> boardList = boardDao.getBoardList(null);
-			request.setAttribute("bList", boardList);
+			List<BoardVo> boardList = new ArrayList<BoardVo>();
+			String keyword = request.getParameter("keyword");
+	
+			if(keyword == null) {
+				boardList = boardDao.getBoardList(null);
+			}
+			
+			else {
+				boardList = boardDao.getBoardList(keyword);
+			}
 
+			request.setAttribute("bList", boardList);
+			
 			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
 		}
 	}
